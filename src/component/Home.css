@@ -1,0 +1,110 @@
+body {
+  height: 100vh;
+}
+.homeContainer {
+  background: url("");
+
+  height: 100vh;
+}
+.bar {
+  height: 100vh;
+}
+body {
+  background-image: url("green.jpg");
+  background-position: 20% 10%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+}
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+.confirmButton {
+  margin-left: 900px;
+  margin-bottom: 500px;
+}
+.confirmSSN {
+  width: 100%;
+}
+.removeSSN {
+  width: 100%;
+}
+.users {
+  padding: 60px;
+  width: 20%;
+  height: 40%;
+  margin-left: 400px;
+}
+.usersText {
+  margin-right: 50px;
+}
+.box {
+  position: absolute;
+  margin-top: -20px;
+  background: transparent;
+  background: rgba(0, 0, 0, 0.5);
+}
+.confirmForm input[type="text"] {
+  padding-left: 5px;
+  inline-size: 200px;
+  display: flex;
+  margin: auto;
+}
+.search {
+  width: 500px;
+  height: 40px;
+  margin-bottom: 50px;
+  display: inline-block;
+}
+.searchButton {
+  display: inline-block;
+}
+.handle {
+  margin-top: 100px;
+}
+.cancel {
+  margin-top: 100px;
+  margin-left: 200px;
+}
+
+.infoDialog {
+  margin-bottom: 300px;
+  padding-top: 250px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.infoButton {
+  margin-right: 1180px;
+  margin-bottom: 10px;
+}
+.userInfo {
+  margin-top: -200px;
+  margin-right: 200px;
+}
+.name {
+  margin-top: 500px;
+}
+.cardNumber {
+  margin-bottom: 200px;
+}
+.cardDate {
+  margin-bottom: 200px;
+}
+.balanceButton {
+  margin-right: 1180px;
+  margin-bottom: 400px;
+}

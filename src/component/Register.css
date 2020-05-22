@@ -1,0 +1,14 @@
+.registerForm {
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.register {
+  background-image: url("1211359-bicycle-wallpaper.jpg");
+  height: 100vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
