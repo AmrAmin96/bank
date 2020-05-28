@@ -5,7 +5,7 @@ import Axios from "axios";
 export function bankRegister(reqBody) {
     alert('posting');
 
-    return http.post('http://localhost:4000/bank/signup', stringify(reqBody));
+    return http.post('http://localhost:4000/bank/addBankAccount', stringify(reqBody));
    
 }
 export  async function bankLogin(reqBody) {

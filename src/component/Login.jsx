@@ -9,8 +9,15 @@ class Login extends Component {
   state = {};
   home() {
     let path = "/home";
-    this.props.history.push(path);
-  }
+
+   this.props.history.push({
+    pathname: path,
+    email:this.reqBody.email
+  });
+
+
+
+      }
   reqBody={
            password:"",
             email:""};

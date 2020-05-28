@@ -29,7 +29,7 @@ class Register extends Component {
 
             
   validate = () => {
-    this.reqBody.userName=document.getElementById("userName").value;
+    this.reqBody.name=document.getElementById("userName").value;
     this.reqBody.password=document.getElementById("password").value;
     this.reqBody.email=document.getElementById("email").value;
     this.reqBody.PIN=document.getElementById("PIN").value;
@@ -51,7 +51,8 @@ class Register extends Component {
   async onClick(){
     if(this.validate()){
       try{
-        await bankRegister(this.reqBody);
+        const newBankAccount=await bankRegister(this.reqBody);
+        console.log(newBankAccount)
         this.nextPath();
       }
       catch(error){

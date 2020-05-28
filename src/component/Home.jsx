@@ -9,6 +9,12 @@ userSearch
 
 class Home extends Component {
   state = {
+    name:"",
+    accountNumber:"",
+    balance:"",
+    cardValidityDate:"",
+    cardNumber:"",
+    email:""
   };
   constructor() {
     super();
@@ -21,16 +27,24 @@ class Home extends Component {
   }
   edit() {
     let path = "/edit";
-    this.props.history.push({
-      pathname: path,
-      state: {
-        email: this.props.location.state.email
-      }
-    });
+    
+    this.props.history.push(path);
+    this.props.history.push(this.state.email);
+    // this.props.history.push({
+    //   pathname: path,
+    //   state: {
+    //     email: this.props.location.state.email
+    //   }
+    // });
+ 
   }
   home() {
     let path = "/home";
-    this.props.history.push(path);
+
+   this.props.history.push({
+    pathname: path,
+    email:this.state.email
+  });
   }
   searchUser(result) {
     let path = "/bank";
@@ -43,24 +57,31 @@ class Home extends Component {
     });
   }
   async onClickDeposit() {
-      this.reqBody.deposit = this.state.deposit;
+      this.reqBody.deposit = document.getElementById("amount").value;
+      this.reqBody.email=this.state.email
       console.log(this.reqBody.deposit);
       //this.reqBody.email = this.props.location.state.email; 
       try {
         await bankDeposit(this.reqBody);
+        this.home()
       } catch (error) {
         if (error.response.status === 404) {
           alert("NotFound");
         }
       }
+      
     }
   
   async onClickWithdraw() {
-      this.reqBody.withdraw = this.state.withdraw;
+    
+      this.reqBody.email=this.state.email
+      this.reqBody.withdraw = document.getElementById("amount").value;
       console.log(this.reqBody.withdraw);
-      this.reqBody.name = this.props.location.state.name; 
+      //this.reqBody.name = this.props.location.state.name; 
       try {
         await bankwithdraw(this.reqBody);
+        this.home()
+
       } catch (error) {
         if (error.response.status === 404) {
           alert("NotFound");
@@ -92,8 +113,29 @@ class Home extends Component {
         if (error.response.status === 404) {
           alert("email not found");
         }}}*/
+
+
+     async   componentWillMount() {
+          // Typical usage (don't forget to compare props):
+          this.reqBody.email=this.props.location.email;
+       const account=  await userSearch(this.reqBody);
+        this.state.name=account[0].name;
+        this.state.accountNumber=account[0].bankAccountNumber;
+        this.state.cardNumber=account[0].cardNumber;
+        this.state.cardValidityDate=account[0].cardValidityDate;
+        this.state.email=account[0].email;
+        this.state.balance=account[0].balance;
+        this.props.history.push({
+         
+          state:this.state
+        });
+alert(this.state.balance)
+
+        }
   render() {
+    //alert(this.props.location.email)
     return (
+    
       <body>
          <div className="navbar">
           <a href="" onClick={() => this.edit()}>
@@ -107,6 +149,7 @@ class Home extends Component {
                 className="search  ml-2 "
                 type="text"
                 placeholder="Enter a value"
+                id="amount"
               />
               <button
                 className=" depositButton btn btn-primary m-2 "
@@ -123,7 +166,7 @@ class Home extends Component {
                 withdraw
               </button>
               
-                  <div className="userInfo text-light float-bottom">
+                  {/* <div className="userInfo text-light float-bottom">
                     <em className="accountNumber font-weight-bold h4">
                       Account number:
                     </em>
@@ -131,7 +174,7 @@ class Home extends Component {
                     <br />
 
                     <em className="email font-weight-bold h4">
-                      Email:
+                      Email:this.state.Email
                     </em>
 
                     <br />
@@ -158,7 +201,40 @@ class Home extends Component {
                       Card Number:
                     </em>
                     <br />
-                  </div>
+                  </div> */}
+                  <table class="table text-light">
+            <tbody>
+              <tr>
+                <th scope="row">NAME</th>
+
+                <th scope="col">{this.state.name}</th>
+              </tr>
+              <tr>
+                <th scope="row">ACCOUNT NUMBER</th>
+                <th scope="col">{this.state.accountNumber}</th>
+              </tr>
+
+              <tr>
+                <th scope="row">Email</th>
+                <th scope="col">{this.state.email}</th>
+              </tr>
+
+              <tr>
+                <th scope="row">BALANCE</th>
+                <th scope="col">{this.state.balance}</th>
+                
+              </tr>
+              <tr>
+                <th scope="row">CARD NUMBER</th>
+                <th scope="col">{this.state.cardNumber}</th>
+                
+              </tr><tr>
+                <th scope="row">CARD VALIDITY DATE</th>
+                <th scope="col">{this.state.cardValidityDate}</th>
+                
+              </tr>
+            </tbody>
+          </table>
             </div>
           </div>
         </div>
